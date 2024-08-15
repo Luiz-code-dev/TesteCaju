@@ -29,7 +29,6 @@ O projeto está organizado da seguinte forma:
     - **`model`**: Contém as classes de modelo de domínio.
 
     - **`src/test/java`**: Contém os testes unitários.
-    - **`com.codevelop.auth.transaction.service`**: Contém os testes das classes de serviço utilizando JUnit e Mockito.
 
 ## Configuração e Execução
 
