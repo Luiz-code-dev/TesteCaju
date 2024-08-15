@@ -53,62 +53,71 @@ configuração adicional, pois as configurações padrão do Spring Boot já inc
    git clone https://github.com/seu-usuario/auth-transaction-service.git
    cd auth-transaction-service
 
-### Construir o projeto:
+## Construir o projeto:
 
-```bash
 mvn clean install
 
-### Executar a aplicação:
+## Executar a aplicação:
 
 Para executar a aplicação, utilize o comando:
 
-```bash
 mvn spring-boot:run
 
-### Executando os Testes
+A aplicação estará disponível em http://localhost:8080.
+
+## Executando os Testes
 
 Para executar os testes unitários, utilize o comando:
 
-```bash
 mvn test
 
 Os testes são escritos com JUnit 5 e utilizam Mockito para simulação de dependências.
 
-Endpoints da API
-POST /transaction/process
+## Endpoints da API
+
+**POST  /transactions**
 
 Processa uma transação com base nos dados fornecidos.
 
-Parâmetros de Requisição:
-accountId: ID da conta.
-amount: Quantidade a ser debitada.
-mcc: Código de categoria do comerciante (Merchant Category Code).
-Exemplo de Requisição:
-json
-Copiar código
+**Parâmetros de Requisição:**
+
+- `accountId`: ID da conta.
+- `amount`: Quantidade a ser debitada.
+- `mcc`: Código de categoria do comerciante (Merchant Category Code).
+- `merchant`: O nome do estabelecimento.
+
+**Exemplo de Requisição:**
+
+\``json
 {
-  "accountId": "123456",
-  "amount": 100.00,
-  "mcc": 5411
+    "accountId": "123",
+    "amount": 100.00,
+    "mcc": "5811",
+    "merchant": "PADARIA DO ZE               SAO PAULO BR"
 }
-Resposta de Sucesso:
-json
-Copiar código
+
+
+**Resposta de Sucesso:**
+
+\``json
 {
   "status": "success",
-  "transactionId": "78910"
+  "code": "00",
+  "transactionId": "Transação concluida"
 }
-Resposta de Erro:
-json
-Copiar código
+
+**Resposta de Erro:**
+
+\``json
 {
-  "status": "error",
+  "status": "success",
   "code": "51",
   "message": "Insufficient funds"
 }
-Contribuindo
-Se você deseja contribuir com o projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request. Antes de contribuir, por favor, leia o guia de contribuições.
 
-Licença
-Este projeto é licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais detalhes.
-
+\``json
+{
+  "status": "success",
+  "code": "07",
+  "message": "Erro transação"
+}
